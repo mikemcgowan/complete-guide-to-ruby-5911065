@@ -1,11 +1,14 @@
 class Animal
 
-  def noise=(value)
-    @noise = value
-  end
+  attr_accessor :noise, :color
 
-  def noise
-    @noise
-  end
+  # same as
+  # def noise=(value)
+  #   @noise = value
+  # end
+  #
+  # def noise
+  #   @noise
+  # end
 
 end
