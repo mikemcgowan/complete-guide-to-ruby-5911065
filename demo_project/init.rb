@@ -1,11 +1,13 @@
 #!/usr/bin/env ruby
 
 require_relative 'classes/person'
+require_relative 'classes/animal'
 
 person1 = Person.new
 person2 = Person.new
 
-puts person1.object_id
-puts person2.object_id
+pig = Animal.new
 
-person1.say_hello
+pig.set_noise
+
+puts pig.make_noise
