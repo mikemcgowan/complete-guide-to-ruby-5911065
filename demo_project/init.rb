@@ -8,6 +8,7 @@ person2 = Person.new
 
 pig = Animal.new
 
-pig.set_noise
+pig.noise = 'Oink!'
+pig.noise=('Oink!')
 
-puts pig.make_noise
+puts pig.noise

@@ -1,10 +1,10 @@
 class Animal
 
-  def set_noise
-    @noise = "Oink!"
+  def noise=(value)
+    @noise = value
   end
 
-  def make_noise
+  def noise
     @noise
   end
 
