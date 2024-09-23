@@ -30,3 +30,11 @@ puts wilbur.noise
 puts "-----"
 
 puts Animal.total_animals
+
+puts "-----"
+
+Animal.species = ['cat', 'mouse', 'moose']
+
+Animal.species.each do |type|
+  puts type
+end
