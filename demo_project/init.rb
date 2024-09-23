@@ -20,10 +20,13 @@ puts dog.noise
 
 puts "-----"
 
-Animal.types.each do |type|
+Animal.species.each do |type|
   puts type
 end
 
 wilbur = Animal.create_a_pig
 puts wilbur.noise
 
+puts "-----"
+
+puts Animal.total_animals
