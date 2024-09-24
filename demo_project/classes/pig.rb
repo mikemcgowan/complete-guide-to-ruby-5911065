@@ -7,4 +7,8 @@ class Pig < Animal
     self.color = 'pink'
   end
 
+  def eat
+    puts "Nom nom nom!"
+  end
+
 end

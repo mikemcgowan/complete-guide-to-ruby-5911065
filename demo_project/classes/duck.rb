@@ -7,4 +7,8 @@ class Duck < Animal
     self.color = 'white'
   end
 
+  def fly
+    puts "Flying free as a bird!"
+  end
+
 end
