@@ -28,4 +28,8 @@ class Animal
     Animal.new(noise: 'Oink!', color: 'pink')
   end
 
+  def sleep
+    puts "The #{self.class.name} sleeps."
+  end
+
 end

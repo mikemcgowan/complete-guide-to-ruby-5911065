@@ -2,39 +2,20 @@
 
 require_relative 'classes/person'
 require_relative 'classes/animal'
+require_relative 'classes/cow'
+require_relative 'classes/duck'
+require_relative 'classes/pig'
 
-person = Person.new
-person.first_name = "Bob"
-person.last_name = "Smith"
-puts person.full_name
-puts person.initial_and_last_name
-# puts person.get_initial("Lucy")
+Animal.new.sleep
 
-puts "-----"
-
-pig = Animal.new({noise: 'Oink!'})
-puts pig.noise
-
-dog = Animal.new
-puts dog.noise
-
-puts "-----"
-
-Animal.species.each do |type|
-  puts type
-end
-
-wilbur = Animal.create_a_pig
+wilbur = Pig.new
 puts wilbur.noise
+wilbur.sleep
 
-puts "-----"
+maisie = Cow.new
+puts maisie.noise
+maisie.sleep
 
-puts Animal.total_animals
-
-puts "-----"
-
-Animal.species = ['cat', 'mouse', 'moose']
-
-Animal.species.each do |type|
-  puts type
-end
+daffy = Duck.new
+puts daffy.noise
+daffy.sleep
