@@ -5,6 +5,8 @@ require_relative 'classes/animal'
 require_relative 'classes/cow'
 require_relative 'classes/duck'
 require_relative 'classes/pig'
+require_relative 'classes/chef'
+require_relative 'classes/amateur_chef'
 
 Animal.new.sleep
 
@@ -22,3 +24,13 @@ daffy = Duck.new
 puts daffy.noise
 daffy.sleep
 daffy.fly
+
+puts "-----"
+
+chef = Chef.new
+chef.make_dinner
+
+puts "-----"
+
+chef = AmateurChef.new
+chef.make_dinner
