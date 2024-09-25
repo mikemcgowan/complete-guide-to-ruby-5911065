@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require_relative 'modules/nameable'
 require_relative 'classes/person'
 require_relative 'classes/animal'
 require_relative 'classes/cow'
@@ -34,3 +35,15 @@ puts "-----"
 
 chef = AmateurChef.new
 chef.make_dinner
+
+puts "-----"
+
+person = Person.new
+person.first_name = "Steve"
+person.last_name = "Jones"
+puts person.full_name
+
+chef = Chef.new
+chef.first_name = "Julia"
+chef.last_name = "Childs"
+puts chef.full_name
