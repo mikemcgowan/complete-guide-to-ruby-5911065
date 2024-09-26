@@ -18,6 +18,14 @@ rescue => e
   puts "#{e.class}: #{e.message}"
 end
 
+class NoEvenNumbers < StandardError
+  attr_reader :array
+
+  def initialize(array=[])
+    @array = array
+    super("No even numbers included")
+  end
+end
 
 def even_numbers(array=[])
 
@@ -29,9 +37,19 @@ def even_numbers(array=[])
     raise StandardError.new("Too few elements")
   end
 
-  array.find_all {|el| el.to_i % 2 == 0}
+  evens = array.find_all {|el| el.to_i % 2 == 0}
+
+  if evens.length == 0
+    raise NoEvenNumbers.new(array)
+  end
 end
 
 puts "-----"
-evens = even_numbers([])
-puts evens.join(',')
+
+begin
+  evens = even_numbers([1,3,5])
+  puts evens.join(',')
+rescue => e
+  puts "#{e.class}: #{e.message}"
+  puts "The original array was: [#{e.array.join(',')}]"
+end
