@@ -23,3 +23,16 @@ File.open('ruby_examples/groceries.txt', 'r') do |file|
   end
 
 end
+
+puts "-----"
+
+file = File.read('ruby_examples/groceries.txt')
+# puts file
+
+lines = File.readlines('ruby_examples/groceries.txt')
+lines.map! {|l| l.chomp}
+lines[2] += " (low fat)"
+
+data = lines.join("\n") + "\n"
+File.write('ruby_examples/groceries.txt', data)
+
