@@ -32,7 +32,13 @@ module RFinder
     end
 
     def add
-      puts "Coming soon: add"
+      output_header("Add a restaurant")
+      rest = Restaurant.new_from_questions
+      array = [rest.name, rest.cuisine, rest.price]
+      CSV.open(@storage_path, 'a') do |csv|
+        csv << array
+      end
+      puts "\nRestaurant saved\n\n"
     end
 
     def help
