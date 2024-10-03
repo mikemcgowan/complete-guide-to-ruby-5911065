@@ -25,8 +25,10 @@ module RFinder
       output_listings(restaurants)
     end
 
-    def find
-      puts "Coming soon: find"
+    def find(keyword="")
+      output_header("Find a restaurant")
+      restaurants = filter_restaurants(all_restaurants, keyword)
+      output_listings(restaurants)
     end
 
     def add
@@ -118,6 +120,15 @@ module RFinder
         when 'price'
           r1.price.to_i <=> r2.price.to_i
         end
+      end
+    end
+
+    def filter_restaurants(restaurants, keyword="")
+      kw = keyword.downcase
+      restaurants.select do |r|
+        r.name.downcase.include?(kw) || 
+        r.cuisine.downcase.include?(kw) || 
+        r.price.to_i <= keyword.to_i
       end
     end
 

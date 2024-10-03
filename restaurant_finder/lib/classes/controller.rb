@@ -51,7 +51,8 @@ module RFinder
       when 'list'
         @guide.list(args)
       when 'find'
-        @guide.find
+        keyword = args.shift || get_keyword
+        @guide.find(keyword)
       when 'add'
         @guide.add
       when 'help'
@@ -59,6 +60,11 @@ module RFinder
       else
         puts "\nI don't understand that command.\n\n"
       end
+    end
+
+    def get_keyword
+      print "Enter a keyword: "
+      gets.chomp
     end
 
   end
