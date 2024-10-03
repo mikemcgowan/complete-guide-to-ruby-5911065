@@ -1,4 +1,5 @@
 require 'csv'
+require_relative 'restaurant'
 
 # Class for the restaurant guide behaviors
 # Responds to: list, find, add, help
@@ -12,12 +13,20 @@ module RFinder
       initialize_storage_file
       # if initialized without error, return self
       self
-    rescue => e
+     rescue => e
       abort("Fatal error: #{e.message}")
     end
 
     def list
-      puts "Coming soon: list"
+      puts "\nListing restaurants\n\n"
+      restaurants = all_restaurants
+      puts "Name, Cuisine, Price"
+      restaurants.each do |rest|
+        print rest.name + ", "
+        print rest.cuisine + ", "
+        print rest.price + ", "
+        print "\n"
+      end
     end
 
     def find
@@ -57,6 +66,20 @@ module RFinder
       return false unless File.readable?(@storage_path)
       return false unless File.writable?(@storage_path)
       return true
+    end
+
+    def all_restaurants
+      # To consider: get a fresh copy each time
+      # or store results in an instance variable?
+      restaurants = []
+      CSV.foreach(@storage_path, headers: true) do |row|
+        rest = RFinder::Restaurant.new
+        rest.name = row['Name']
+        rest.cuisine = row['Cuisine']
+        rest.price = row['Price']
+        restaurants << rest
+      end
+      restaurants
     end
 
   end
