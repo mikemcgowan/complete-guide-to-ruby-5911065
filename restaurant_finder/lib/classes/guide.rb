@@ -18,9 +18,10 @@ module RFinder
       abort("Fatal error: #{e.message}")
     end
 
-    def list
+    def list(args=[])
       output_header("Listing restaurants")
-      restaurants = all_restaurants
+      sort_order = extract_sort_order(args)
+      restaurants = sort_restaurants(all_restaurants, sort_order)
       output_listings(restaurants)
     end
 
@@ -97,6 +98,27 @@ module RFinder
         restaurants << rest
       end
       restaurants
+    end
+
+    def extract_sort_order(args=[])
+      valid_sorts = ['name', 'cuisine', 'price']
+      order = args.shift
+      order = args.shift if order == 'by'
+      order = "name" unless valid_sorts.include?(order)
+      order
+    end
+
+    def sort_restaurants(restaurants, sort_order="name")
+      restaurants.sort do |r1, r2|
+        case sort_order
+        when 'name'
+          r1.name.downcase <=> r2.name.downcase
+        when 'cuisine'
+          r1.cuisine.downcase <=> r2.cuisine.downcase
+        when 'price'
+          r1.price.to_i <=> r2.price.to_i
+        end
+      end
     end
 
   end

@@ -49,7 +49,7 @@ module RFinder
     def do_action(action, args=[])
       case action
       when 'list'
-        @guide.list
+        @guide.list(args)
       when 'find'
         @guide.find
       when 'add'
