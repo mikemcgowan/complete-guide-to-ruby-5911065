@@ -1,9 +1,15 @@
+require_relative 'guide'
+
 # Class for controling user interaction
 # All actions are passed off to the Guide
 module RFinder
   class Controller
 
     @@valid_actions = ['list', 'find', 'add', 'help', 'quit']
+
+    def initialize
+      @guide = RFinder::Guide.new
+    end
 
     def launch!
       introduction
@@ -43,13 +49,13 @@ module RFinder
     def do_action(action, args=[])
       case action
       when 'list'
-        puts "Coming soon: list"
+        @guide.list
       when 'find'
-        puts "Coming soon: find"
+        @guide.find
       when 'add'
-        puts "Coming soon: add"
+        @guide.add
       when 'help'
-        puts "Coming soon: help"
+        @guide.help
       else
         puts "\nI don't understand that command.\n\n"
       end
