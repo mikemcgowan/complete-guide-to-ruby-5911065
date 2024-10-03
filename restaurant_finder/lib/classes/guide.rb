@@ -7,6 +7,7 @@ module RFinder
   class Guide
 
     @@storage_filename = 'restaurants.csv'
+    @@width = 60
 
     def initialize
       # find storage file; set @storage_path
@@ -18,15 +19,9 @@ module RFinder
     end
 
     def list
-      puts "\nListing restaurants\n\n"
+      output_header("Listing restaurants")
       restaurants = all_restaurants
-      puts "Name, Cuisine, Price"
-      restaurants.each do |rest|
-        print rest.name + ", "
-        print rest.cuisine + ", "
-        print rest.price + ", "
-        print "\n"
-      end
+      output_listings(restaurants)
     end
 
     def find
@@ -66,6 +61,28 @@ module RFinder
       return false unless File.readable?(@storage_path)
       return false unless File.writable?(@storage_path)
       return true
+    end
+
+  	def output_header(text)
+  	  puts "\n#{text.upcase.center(@@width)}\n\n"
+  	end
+	
+  	def output_listings(restaurants=[])
+      div = " "
+      cols = [30,20,6]
+      print div + "Name".ljust(cols[0])
+      print div + "Cuisine".ljust(cols[1])
+      print div + "Price".rjust(cols[2])
+      print div + "\n"
+      puts "-" * @@width
+      restaurants.each do |rest|
+        print div + rest.name.ljust(cols[0])
+        print div + rest.cuisine.ljust(cols[1])
+        print div + rest.price.rjust(cols[2])
+        print div + "\n"
+      end
+      puts div + "No listings found" if restaurants.empty?
+      puts "-" * @@width
     end
 
     def all_restaurants
