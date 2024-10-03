@@ -4,6 +4,7 @@
 
 APP_ROOT = File.expand_path(File.dirname(__FILE__))
 
+require_relative 'lib/support/string_extend'
 require_relative 'lib/classes/controller'
 
 begin

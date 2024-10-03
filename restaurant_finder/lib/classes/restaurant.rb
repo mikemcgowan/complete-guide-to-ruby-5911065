@@ -1,6 +1,9 @@
+require_relative '../support/number_helper'
+
 # Class for each restaurant in the list
 module RFinder
   class Restaurant
+    include NumberHelper
 
     attr_accessor :name, :cuisine, :price
 
@@ -25,5 +28,9 @@ module RFinder
       @price   = args[:price]   || ""
     end
   
+    def formatted_price
+      number_to_currency(price)
+    end
+
   end
 end

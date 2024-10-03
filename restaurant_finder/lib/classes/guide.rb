@@ -42,7 +42,16 @@ module RFinder
     end
 
     def help
-      puts "Coming soon: help"
+      output_header('Help')
+      puts "list: list all restaurants"
+      puts "  Sortable by: name, cuisine, price"
+      puts "  Example: 'list cuisine' or 'list by cuisine'"
+      puts
+      puts "find: find a restaurant using a keyword"
+      puts "  Example: 'find mex' or 'find 25'"
+      puts
+      puts "add: add a new restaurant to the list"
+      puts
     end
 
     private
@@ -85,9 +94,9 @@ module RFinder
       print div + "\n"
       puts "-" * @@width
       restaurants.each do |rest|
-        print div + rest.name.ljust(cols[0])
-        print div + rest.cuisine.ljust(cols[1])
-        print div + rest.price.rjust(cols[2])
+        print div + rest.name.titleize.ljust(cols[0])
+        print div + rest.cuisine.titleize.ljust(cols[1])
+        print div + rest.formatted_price.rjust(cols[2])
         print div + "\n"
       end
       puts div + "No listings found" if restaurants.empty?
