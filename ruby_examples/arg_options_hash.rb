@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-def to_sentence(array, options={})git 
+def to_sentence(array, options={})
   join_word = options[:join_word] || 'and'
   case array.length
 	when 0
