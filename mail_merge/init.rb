@@ -1,19 +1,28 @@
 #!/usr/bin/env ruby
 
-APP_ROOT = File.expand_path(File.dirname(__FILE__))
+require 'csv'
+require 'erb'
+
+APP_ROOT = __dir__
+FINE_PER_DAY = 0.10
 
 def number_to_currency(value)
-  sprintf('$%.2f', value.to_f)
+  format('$%.2f', value.to_f)
 end
 
-# Read template file containing the overdue notice
-
-# Read CSV file to get list of overdue notices
+overdue_notice = File.read 'overdue_notice.txt.erb'
+overdue_list = File.read 'overdue_list.csv'
 
 # For each notice:
-
-# Set instance variables as needed
-
-# Use ERB to bind instance variables to the letter template
-
-# Save results as separate files (e.g., "letters/overdue_01.txt")
+count = 1
+CSV.parse(overdue_list, headers: true).each do |row|
+  last_name = row['Last Name']
+  first_name = row['First Name']
+  days = row['Days']
+  title = row['Title']
+  fee = number_to_currency(days.to_i * FINE_PER_DAY)
+  template = ERB.new(overdue_notice)
+  result = template.result(binding)
+  File.write("#{APP_ROOT}/letters/overdue_#{count}.txt", result)
+  count += 1
+end
